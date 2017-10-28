@@ -1,6 +1,15 @@
 /***********
- IMAGE ANALIZER TO CREATE A .CDV (COLOR DATA VIZ) FILE
+ IMAGE ANALIZER TO CREATE A .CDV (COLOR DATA VIZ) FILE. Code by Quelic Berga
  ************/
+
+
+
+/*** working in 3D ***/
+
+import peasy.*;
+import peasy.org.apache.commons.math.*;
+import peasy.org.apache.commons.math.geometry.*;
+
 Estructura es;
 PGraphics Visualitzacio;
 PGraphics Detalls;
@@ -16,15 +25,17 @@ String[] filenames;
 PVector[] Suma;
 boolean data = false;
 
-int resolucio = 62; // nombre de linees en el radi
-int tamanyDiametre = 150; // tamany del cercle de color
+int resolucio = 12; // nombre de linees en el radi
+int tamanyDiametre = 350; // tamany del cercle de color
+
+
 
 void setup() {
-  size(1700, 1000, P2D); // mida de la pantalla
+  size(1700, 1000, P3D); // mida de la pantalla
   background(0); // començem en negre 
   colorMode(HSB); // tipus de color
   ellipseMode(CENTER); // cercles es dibuixen desde el seu centre 
-  Visualitzacio = createGraphics(width-width/3, height-height/10);
+  Visualitzacio = createGraphics(width-width/3, height-height/10, P3D);
   Detalls = createGraphics(width/3, height-height/10);
   es = new Estructura(new PVector (width/3, height/2), tamanyDiametre, resolucio); // creem la estuctura amb els valors desitjats ( posició x i y, mida diametre, i nombre de punts per aspa)
   es.crea(); // creem els punts i els hi assignem la posició i color.

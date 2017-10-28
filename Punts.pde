@@ -31,7 +31,13 @@ class Punts {
     Visualitzacio.stroke(255, 255, 255);
     Visualitzacio.noFill();
     if (activa) {
-      Visualitzacio.ellipse(pos.x, pos.y, mida.x*2, mida.y*2);
+
+      Visualitzacio.fill(c);
+      Visualitzacio.pushMatrix();
+      Visualitzacio.translate(pos.x, pos.y, pos.z);
+      Visualitzacio.ellipse(0, 0, mida.x*2, mida.y*2);
+
+      Visualitzacio.popMatrix();
     }
     if (es.on == Titol) {
       Visualitzacio.stroke(255, 128+sin(frameCount/5.0)*128, 255);
@@ -49,10 +55,17 @@ class Punts {
     if (prox < 100) {
 
       Visualitzacio.fill(c, 30);
-      Visualitzacio.ellipse(pos.x, pos.y, mida.x+100-prox, mida.y+100-prox);
+      Visualitzacio.pushMatrix();
+      Visualitzacio.translate(pos.x, pos.y, pos.z);
+      Visualitzacio.ellipse(0, 0, mida.x+100-prox, mida.y+100-prox);
+      Visualitzacio.popMatrix();
     } else {
       Visualitzacio.fill(c);
-      Visualitzacio.ellipse(pos.x, pos.y, mida.x, mida.y);
+      Visualitzacio.pushMatrix();
+      Visualitzacio.translate(pos.x, pos.y, pos.z);
+      Visualitzacio.ellipse(0, 0, mida.x, mida.y);
+
+      Visualitzacio.popMatrix();
     }
     if (data == true) {
       /*
