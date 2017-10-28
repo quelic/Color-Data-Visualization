@@ -6,9 +6,6 @@
 
 /*** working in 3D ***/
 
-import peasy.*;
-import peasy.org.apache.commons.math.*;
-import peasy.org.apache.commons.math.geometry.*;
 
 Estructura es;
 PGraphics Visualitzacio;
@@ -24,6 +21,8 @@ String path = sketchPath();
 String[] filenames;
 PVector[] Suma;
 boolean data = false;
+boolean update = false;
+
 
 int resolucio = 12; // nombre de linees en el radi
 int tamanyDiametre = 350; // tamany del cercle de color
@@ -37,8 +36,9 @@ void setup() {
   ellipseMode(CENTER); // cercles es dibuixen desde el seu centre 
   Visualitzacio = createGraphics(width-width/3, height-height/10, P3D);
   Detalls = createGraphics(width/3, height-height/10);
-  es = new Estructura(new PVector (width/3, height/2), tamanyDiametre, resolucio); // creem la estuctura amb els valors desitjats ( posició x i y, mida diametre, i nombre de punts per aspa)
+  es = new Estructura(new PVector ((width-width/3)/2, (height-height/10)/2), tamanyDiametre, resolucio); // creem la estuctura amb els valors desitjats ( posició x i y, mida diametre, i nombre de punts per aspa)
   es.crea(); // creem els punts i els hi assignem la posició i color.
+  ortho(-width/2, width/2, -height/2, height/2); 
 }
 
 void draw() {
@@ -62,8 +62,9 @@ void draw() {
 
   Detalls.endDraw();
   Visualitzacio.beginDraw();
-  Visualitzacio.fill(0, 20); // fem un efecte de lleugera transparència per a suavitzar l'animació i interacció.
-  Visualitzacio.rect(0, 0, width, height); // dibuixem un rectangle semi transparent en lloc de borrar la pantalla
+  Visualitzacio.background(0);
+ /* Visualitzacio.fill(0, 20); // fem un efecte de lleugera transparència per a suavitzar l'animació i interacció.
+  Visualitzacio.rect(0, 0, width, height); // dibuixem un rectangle semi transparent en lloc de borrar la pantalla */
   es.dibuixa(); // dibuixem l'estructura amb els seus punts.
   Visualitzacio.endDraw();
   image(Visualitzacio, width/100, height/10);
@@ -75,7 +76,6 @@ void keyPressed() {//canviar mètode s'activa al premer qualsevol tecla!
     selectFolder("Select a folder to process:", "folderSelected"); // Crida una finestra local per escollir arxius
   }
   if (key == 'u' || key == 'U') {
-    es.update();
   }
 }
 
@@ -97,6 +97,7 @@ void getinfo() {
   data = true;
   printArray(filenames);
   printArray(Suma);
+  update = true;
 }
 
 
@@ -142,7 +143,7 @@ PVector[] calcPix(String[] dades) {
   PVector[] Suma = new PVector[dades.length];
   for (int i = 0; i < dades.length; i ++) {
 
-    img[i] = loadImage(dades[i]);
+    img[i] = loadImage(path+"/"+dades[i]);
 
     img[i].loadPixels();
     int size = img[i].width*img[i].height;

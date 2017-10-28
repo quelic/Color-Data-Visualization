@@ -7,9 +7,8 @@ class Estructura  {
   float posX;
   float posY;
   float posZ;
-
+  float count=0;
   String on; 
-
   Estructura(PVector posicio, int tamanyCub_, int escala_) {
     escala = escala_;
     tamanyCub = tamanyCub_;
@@ -17,11 +16,21 @@ class Estructura  {
     punts = new ArrayList<Punts>();
   }
   void dibuixa() {
-    Visualitzacio.translate(origen.x, origen.y);
-
+    count+=0.1;
+     if (update) {
+      es.update();
+    }
+    update = false;
+    Visualitzacio.translate(origen.x,origen.y);
+    
     Visualitzacio.pushMatrix();
-    Visualitzacio.rotateZ(radians(-22));
-    Visualitzacio.rotateX(radians(12));
+    Visualitzacio.rotateY(radians(count));
+    Visualitzacio.rotateX(radians(count*2));
+    Visualitzacio.rotateZ(radians(count*3));
+    Visualitzacio.translate(-tamanyCub/2, -tamanyCub/2,-tamanyCub/2);
+ 
+
+
 
     for (Punts p : punts) {
 
@@ -55,16 +64,16 @@ class Estructura  {
   void update() {
     if (filenames != null) {
       for (int f = 0; f < filenames.length; f++) { // es crea la roda de HUE
-        posX = (Suma[f].x/255)*(tamanyCub);
-        posY = (Suma[f].y/255)*(tamanyCub);
-        posZ = (Suma[f].z/255)*(tamanyCub);
+        posX = (Suma[f].x/255.0)*tamanyCub;
+        posY = (Suma[f].y/255.0)*tamanyCub;
+        posZ = (Suma[f].z/255.0)*tamanyCub;
         // posX = (100 + ((Suma[f].y/2 + (255-Suma[f].z/2)/2)*((escala*2.0)/255.0)  * (tamanyCub / escala)))*cos(radians((Suma[f].x*(255.0/escala))*360));
         //  posY = (100 + ((Suma[f].y/2 + (255-Suma[f].z/2)/2)*((escala*2.0)/255.0) * (tamanyCub / escala)))*sin(radians((Suma[f].x*(255.0/escala))*360));
 
         //      posX = (100 + ((Suma[f].y/2 + 255-Suma[f].z/2)*(255/(escala*2))  * (tamanyCub / escala)))*cos(radians((Suma[f].x*1.0/escala)*360));
         //      posY = (100 + ((Suma[f].y/2 + 255-Suma[f].z/2)*(255/(escala*2)) * (tamanyCub / escala)))*sin(radians((Suma[f].x*1.0/escala)*360));
 
-        punts.add(new Punts(new PVector(posX, posY, posZ), color(Suma[f].x, Suma[f].y, Suma[f].z), new PVector((tamanyCub/escala)*2, (tamanyCub/escala)*2), filenames[f]));
+        punts.add(new Punts(new PVector(posX, posY, posZ), color(Suma[f].x, Suma[f].y, Suma[f].z), new PVector((tamanyCub/escala), (tamanyCub/escala)), filenames[f]));
         println(filenames[f], Suma[f]);
       }
     } else {

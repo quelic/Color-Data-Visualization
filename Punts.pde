@@ -35,14 +35,14 @@ class Punts {
       Visualitzacio.fill(c);
       Visualitzacio.pushMatrix();
       Visualitzacio.translate(pos.x, pos.y, pos.z);
-      Visualitzacio.ellipse(0, 0, mida.x*2, mida.y*2);
+      Visualitzacio.box(mida.x*2);//ellipse(0, 0, mida.x*2, mida.y*2);
 
       Visualitzacio.popMatrix();
     }
     if (es.on == Titol) {
       Visualitzacio.stroke(255, 128+sin(frameCount/5.0)*128, 255);
       Visualitzacio.strokeWeight(2);
-      Visualitzacio.ellipse(pos.x, pos.y, mida.x*5, mida.y*5);
+      Visualitzacio.box(mida.x*5);//ellipse(pos.x, pos.y, mida.x*5, mida.y*5);
     }
     Visualitzacio.noStroke();
   }
@@ -57,13 +57,13 @@ class Punts {
       Visualitzacio.fill(c, 30);
       Visualitzacio.pushMatrix();
       Visualitzacio.translate(pos.x, pos.y, pos.z);
-      Visualitzacio.ellipse(0, 0, mida.x+100-prox, mida.y+100-prox);
+      Visualitzacio.box(mida.x+100-prox);//ellipse(0, 0, mida.x+100-prox, mida.y+100-prox);
       Visualitzacio.popMatrix();
     } else {
       Visualitzacio.fill(c);
       Visualitzacio.pushMatrix();
       Visualitzacio.translate(pos.x, pos.y, pos.z);
-      Visualitzacio.ellipse(0, 0, mida.x, mida.y);
+      Visualitzacio.box(mida.x);//ellipse(0, 0, mida.x, mida.y);
 
       Visualitzacio.popMatrix();
     }
