@@ -25,7 +25,7 @@ boolean update = false;
 
 
 int resolucio = 12; // nombre de linees en el radi
-int tamanyDiametre = 350; // tamany del cercle de color
+int tamanyDiametre = 550; // tamany del cercle de color
 
 
 
@@ -38,7 +38,7 @@ void setup() {
   Detalls = createGraphics(width/3, height-height/10);
   es = new Estructura(new PVector ((width-width/3)/2, (height-height/10)/2), tamanyDiametre, resolucio); // creem la estuctura amb els valors desitjats ( posició x i y, mida diametre, i nombre de punts per aspa)
   es.crea(); // creem els punts i els hi assignem la posició i color.
-  ortho(-width/2, width/2, -height/2, height/2); 
+  //ortho(-width/2, width/2, -height/2, height/2);
 }
 
 void draw() {
@@ -59,12 +59,12 @@ void draw() {
   Detalls.textSize(10);
   Detalls.textAlign(LEFT, TOP);
   Detalls.text(DescripActual, 30, 200, 220, 250);
-
+ 
   Detalls.endDraw();
   Visualitzacio.beginDraw();
   Visualitzacio.background(0);
- /* Visualitzacio.fill(0, 20); // fem un efecte de lleugera transparència per a suavitzar l'animació i interacció.
-  Visualitzacio.rect(0, 0, width, height); // dibuixem un rectangle semi transparent en lloc de borrar la pantalla */
+  /* Visualitzacio.fill(0, 20); // fem un efecte de lleugera transparència per a suavitzar l'animació i interacció.
+   Visualitzacio.rect(0, 0, width, height); // dibuixem un rectangle semi transparent en lloc de borrar la pantalla */
   es.dibuixa(); // dibuixem l'estructura amb els seus punts.
   Visualitzacio.endDraw();
   image(Visualitzacio, width/100, height/10);

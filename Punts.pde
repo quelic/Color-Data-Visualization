@@ -15,7 +15,7 @@ class Punts {
     pos = pos_;
     c = c_;
     Titol = nom;
-    println(nom);
+
     if (nom != "") {
       activa = true; // assignem un valor a l'atzar.
     }
@@ -60,7 +60,16 @@ class Punts {
       Visualitzacio.box(mida.x+100-prox);//ellipse(0, 0, mida.x+100-prox, mida.y+100-prox);
       Visualitzacio.popMatrix();
     } else {
-      Visualitzacio.fill(c);
+      if (activa) { 
+        Visualitzacio.noStroke();
+        Visualitzacio.fill(c);
+      } else {
+        
+        Visualitzacio.stroke(c);
+                Visualitzacio.strokeWeight(0.4);
+        Visualitzacio.noFill();
+ 
+      }
       Visualitzacio.pushMatrix();
       Visualitzacio.translate(pos.x, pos.y, pos.z);
       Visualitzacio.box(mida.x);//ellipse(0, 0, mida.x, mida.y);

@@ -17,18 +17,18 @@ class Estructura  {
   }
   void dibuixa() {
     count+=0.1;
-     if (update) {
+    if (update) {
       es.update();
     }
     update = false;
-    Visualitzacio.translate(origen.x,origen.y);
-    
+    Visualitzacio.translate(origen.x, origen.y);
+
     Visualitzacio.pushMatrix();
     Visualitzacio.rotateY(radians(count));
     Visualitzacio.rotateX(radians(count*2));
     Visualitzacio.rotateZ(radians(count*3));
-    Visualitzacio.translate(-tamanyCub/2, -tamanyCub/2,-tamanyCub/2);
- 
+    Visualitzacio.translate(-tamanyCub/2, -tamanyCub/2, -tamanyCub/2);
+
 
 
 
@@ -56,7 +56,7 @@ class Estructura  {
           // (100 + (s * (tamanyCub / escala)))*cos(radians((h*1.0/escala)*360));
           // posY = (100 + (s * (tamanyCub / escala)))*sin(radians((h*1.0/escala)*360));
           // posX = 
-          punts.add(new Punts(new PVector(posX, posY, posZ), c, new PVector((tamanyCub/escala)/15, (tamanyCub/escala)/15), ""));
+          punts.add(new Punts(new PVector(posX, posY, posZ), c, new PVector((tamanyCub/escala), (tamanyCub/escala)), ""));
         }
       }
     }
@@ -73,7 +73,7 @@ class Estructura  {
         //      posX = (100 + ((Suma[f].y/2 + 255-Suma[f].z/2)*(255/(escala*2))  * (tamanyCub / escala)))*cos(radians((Suma[f].x*1.0/escala)*360));
         //      posY = (100 + ((Suma[f].y/2 + 255-Suma[f].z/2)*(255/(escala*2)) * (tamanyCub / escala)))*sin(radians((Suma[f].x*1.0/escala)*360));
 
-        punts.add(new Punts(new PVector(posX, posY, posZ), color(Suma[f].x, Suma[f].y, Suma[f].z), new PVector((tamanyCub/escala), (tamanyCub/escala)), filenames[f]));
+        punts.add(new Punts(new PVector(posX, posY, posZ), color(Suma[f].x, Suma[f].y, Suma[f].z), new PVector(((tamanyCub/escala)/2), (tamanyCub/escala)/2), filenames[f]));
         println(filenames[f], Suma[f]);
       }
     } else {
