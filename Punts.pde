@@ -10,19 +10,19 @@ class Punts {
   String URL = "";
   float prox;
 
-  Punts(PVector pos_, color c_, PVector mida_, String nom) {
+  Punts(PVector pos_, color c_, PVector mida_, String ruta, String nom) {
     mida = mida_;
     pos = pos_;
     c = c_;
     Titol = nom;
-
+  
     if (nom != "") {
       activa = true; // assignem un valor a l'atzar.
     }
     if (activa) {
       Titol = nom;
       Descripcio = "Hola, sóc una explicació de que va tot això, tinguent en compte el color i el comentari de la interfície";
-      Ruta = path+" "+nom;  
+      Ruta = ruta+"/"+nom;  
       URL = "http://www.facebook.com";
     }
   }
@@ -93,6 +93,7 @@ class Punts {
         DescripActual = Descripcio;
         es.on = InterActual;
         println("this is " + es.on);
+        actualImg = loadImage(Ruta);
       }
     }
   }

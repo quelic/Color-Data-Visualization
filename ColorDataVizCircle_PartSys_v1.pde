@@ -13,7 +13,7 @@ PGraphics Detalls;
 String InterActual = "";
 String DescripActual = "";
 String URLActual = "";
-
+PImage actualImg;
 
 /*** Getting DATA of the folder or images**/
 import java.util.Date;
@@ -22,7 +22,7 @@ String[] filenames;
 PVector[] Suma;
 boolean data = false;
 boolean update = false;
-
+int totalFiles = 0;
 
 int resolucio = 12; // nombre de linees en el radi
 int tamanyDiametre = 550; // tamany del cercle de color
@@ -39,12 +39,14 @@ void setup() {
   es = new Estructura(new PVector ((width-width/3)/2, (height-height/10)/2), tamanyDiametre, resolucio); // creem la estuctura amb els valors desitjats ( posició x i y, mida diametre, i nombre de punts per aspa)
   es.crea(); // creem els punts i els hi assignem la posició i color.
   //ortho(-width/2, width/2, -height/2, height/2);
+
+  actualImg = loadImage("0.jpg");
 }
 
 void draw() {
   background(0);
   textSize(64);
-  text("Colors dominants en les interfícies", 20, 72);
+  text("Color mig d'arixus d'imatge", 20, 72);
   Detalls.beginDraw();
   Detalls.fill(255);
   Detalls.rect(0, 0, width, height);
@@ -59,7 +61,8 @@ void draw() {
   Detalls.textSize(10);
   Detalls.textAlign(LEFT, TOP);
   Detalls.text(DescripActual, 30, 200, 220, 250);
- 
+  Detalls.image(actualImg, 30, 420, 220, 250);
+
   Detalls.endDraw();
   Visualitzacio.beginDraw();
   Visualitzacio.background(0);
@@ -107,7 +110,7 @@ String[] listFileNames(String dir) {
   if (file.isDirectory()) {
     String na[] = file.list();
     String names[] = new String[0];
-    for (int i = 0; i < na.length; i++) {
+    for (int i = totalFiles; i < na.length+totalFiles; i++) {
       if (na[i].endsWith(".jpg")) {
         names = append(names, na[i]);
       }
@@ -139,19 +142,20 @@ File[] listFiles(String dir) {
 // Calculem color promig per imatge i ho guardem en un vector. 
 PVector[] calcPix(String[] dades) {
 
-  PImage[] img = new PImage[dades.length];
+  // PImage[] img = new PImage[dades.length];
+  PImage img;
   PVector[] Suma = new PVector[dades.length];
   for (int i = 0; i < dades.length; i ++) {
 
-    img[i] = loadImage(path+"/"+dades[i]);
+    img = loadImage(path+"/"+dades[i]);
 
-    img[i].loadPixels();
-    int size = img[i].width*img[i].height;
+    img.loadPixels();
+    int size = img.width*img.height;
     Suma[i] = new PVector (0, 0, 0);
     for (int s = 0; s < size; s++) {
-      Suma[i].x += (hue(img[i].pixels[s]));
-      Suma[i].y += (saturation(img[i].pixels[s]));
-      Suma[i].z += (brightness(img[i].pixels[s]));
+      Suma[i].x += (hue(img.pixels[s]));
+      Suma[i].y += (saturation(img.pixels[s]));
+      Suma[i].z += (brightness(img.pixels[s]));
     }
     Suma[i].x /= size;
     Suma[i].y /= size;
